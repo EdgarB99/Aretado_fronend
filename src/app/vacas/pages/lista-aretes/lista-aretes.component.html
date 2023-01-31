@@ -1,0 +1,65 @@
+<h1 class="d-flex justify-content-center mt-3">Listado de vacas</h1>
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col">
+            
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+              
+
+                  <ng-container matColumnDef="arete">
+                    <th mat-header-cell *matHeaderCellDef>Arete</th>
+                    <td mat-cell *matCellDef="let element"> {{element.arete}} </td>
+                  </ng-container>
+              
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="fechaNacimiento">
+                    <th mat-header-cell *matHeaderCellDef> Fecha Nacimiento </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento}}</td>
+                  </ng-container>
+
+                  
+                  <ng-container matColumnDef="fechaIngreso">
+                    <th mat-header-cell *matHeaderCellDef> Fecha de Ingreso </th>
+                    <td mat-cell *matCellDef="let element"> {{element.fechaIngreso}}</td>
+                  </ng-container>
+              
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="kg">
+                    <th mat-header-cell *matHeaderCellDef>Kg</th>
+                    <td mat-cell *matCellDef="let element"> {{element.kg}}</td>
+                  </ng-container>
+
+                  
+                  <ng-container matColumnDef="lb">
+                    <th mat-header-cell *matHeaderCellDef>Lb</th>
+                    <td mat-cell *matCellDef="let element"> {{element.lb}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="loteId">
+                    <th mat-header-cell *matHeaderCellDef>Lote</th>
+                    <td mat-cell *matCellDef="let element"> {{element.loteId | titlecase}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="razaId">
+                    <th mat-header-cell *matHeaderCellDef>Raza</th>
+                    <td mat-cell *matCellDef="let element"> {{element.razaId | titlecase }}</td>
+                  </ng-container>
+        
+                                 
+                  
+                  <tr  mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              
+                <mat-paginator class="d-flex justify-content-center mt-3"
+                               [pageSize]="5"
+                               showFirstLastButtons>
+                </mat-paginator>
+              </div>
+              
+        </div>
+    </div>
+</div>

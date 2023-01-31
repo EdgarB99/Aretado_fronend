@@ -1,0 +1,66 @@
+<h1 class="d-flex justify-content-center mt-3">
+    {{(!razaId)? 'Registro ': 'Edición '}} de raza
+</h1>
+
+
+    <div class="row align-items-center justify-content-center m-0 ">
+        <div class="col-sm-6 col-xs-12">
+            <mat-card class="align-items-center text-center">
+                <mat-card-content>
+                    <form autocomplete="off"
+                    [formGroup]="formularioRazas"
+                    (ngSubmit)="registrar()">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>Nombre</p>
+                                <input type="text"
+                                       class="form-control"
+                                       formControlName="nombreRaza"
+                                       placeholder="Ingrese nombre">
+                                  <span class="form-text text-danger"
+                                       *ngIf="campoNoValido('nombreRaza')">
+                                     Ingrese el nombre de la raza
+                                 </span>
+                              </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <p>Descripcion</p>
+                                <input type="text"
+                                       class="form-control"
+                                       formControlName="descripcion"
+                                       placeholder="Ingrese nombre">
+                                  <span class="form-text text-danger"
+                                       *ngIf="campoNoValido('descripcion')">
+                                     Ingrese la descripcion
+                                 </span>
+                              </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <span class="form-text text-danger"
+                                *ngIf="razaFound === true">
+                                    Esta raza ya existe
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col">
+                                <button mat-raised-button
+                                        color="primary"
+                                        class="float-end"
+                                        [disabled]="formularioRazas.invalid"
+                                        type="submit">
+                                        {{(!razaId)? 'Registrar ': 'Actualizar '}}
+                                        <mat-icon mat-list-icon>save</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>

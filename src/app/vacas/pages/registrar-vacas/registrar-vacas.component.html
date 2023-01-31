@@ -1,0 +1,128 @@
+<h1 class="d-flex justify-content-center mt-3">
+    Registrar vaca
+</h1>
+
+<div class="container">
+    <div class="row align-items-center justify-content-center m-0">
+        <div class="col-sm-10 col-xs-12">
+            <mat-card>
+                <mat-card-content>
+                    <form autocomplete="off"
+                          [formGroup]="formularioVacas"
+                          (ngSubmit)="registrar()">
+                          
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Arete</p>
+                                <input type="text"
+                                class="form-control"
+                                formControlName="arete"
+                                placeholder="MX0000 2900 1820">
+                                <span class="form-text text-danger"
+                                *ngIf="campoNoValido('arete')">
+                                    {{areteErrorMsg}}
+                                </span>
+                                <span class="form-text text-danger"
+                                *ngIf="vacaFound===true">
+                                    Este arete ya lo tiene otra vaca.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Fecha de Nacimiento</p>
+                                <input type="date"
+                                class="form-control"
+                                formControlName="fechaNacimiento"
+                                placeholder="06/05/2018">
+                                <span class="form-text text-danger"
+                                *ngIf="campoNoValido('fechaNacimiento')">
+                                    Ingrese la fecha de nacimiento de la vaca
+                                </span>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>Fecha de Ingreso</p>
+                                <input type="date"
+                                class="form-control"
+                                formControlName="fechaIngreso"
+                                placeholder="10/01/2023">
+                                <span class="form-text text-danger"
+                                *ngIf="campoNoValido('fechaIngreso')">
+                                    Ingrese la fecha de ingreso de la vaca
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">   
+                                <label class="form-label">Lotes</label>
+                                <select class="form-control"
+                                        formControlName="loteId">
+                                    <option value=""> -- Seleccione lote -- </option>
+                                    <option *ngFor="let lote of lotes"
+                                            [value]="lote"> {{lote | titlecase}} </option>
+                                </select>
+                                <span class="form-text text-danger"
+                                *ngIf="campoNoValido('loteId')">
+                                    Seleccione el lote
+                                </span>
+                            </div>
+                            <div class="col-sm-6">   
+                                <label class="form-label">Razas</label>
+                                <select class="form-control"
+                                        formControlName="razaId">
+                                    <option value=""> -- Seleccione raza -- </option>
+                                    <option *ngFor="let raza of razas"
+                                            [value]="raza"> {{raza | titlecase}} </option>
+                                </select>
+                                <span class="form-text text-danger"
+                                *ngIf="campoNoValido('razaId')">
+                                    Seleccione la raza
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <p>Peso</p>
+                            <div class="col-sm-6">
+                                <p>Kilogramos</p>
+                                <input type="number"
+                                class="form-control"
+                                formControlName="kg"
+                                placeholder="250">
+                                <span class="form-text text-danger"
+                                *ngIf="campoNoValido('kg')">
+                                    Ingrese los kg de la vaca.
+                                </span>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>Libras</p>
+                                <input type="number"
+                                class="form-control"
+                                formControlName="lb"
+                                placeholder="551.25">
+                                <span class="form-text text-danger"
+                                *ngIf="campoNoValido('lb')">
+                                    Ingrese las libras de la vaca.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col">
+                                <button mat-raised-button
+                                        color="primary"
+                                        class="float-end"
+                                        type="submit"
+                                        [disabled]="formularioVacas.invalid">
+                                        Registrar
+                                    <mat-icon mat-list-icon>save</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+

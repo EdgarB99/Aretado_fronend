@@ -1,0 +1,75 @@
+<h1 class="d-flex justify-content-center mt-3">
+    Calcular peso de alimentación diaria
+</h1>
+
+<div class="container">
+    <div class="row">
+      <form [formGroup]="formularioLote">
+        <div class="col-sm-4">   
+            <label class="form-label">Lotes</label>
+            <select class="form-control"
+                    formControlName="lote">
+                <option value=""> -- Seleccione Lote -- </option>
+                <option *ngFor="let lote of lotes"
+                        [value]="lote"> {{lote | titlecase}} </option>
+            </select>
+        </div>
+      </form>
+    </div>
+</div>
+
+<div class="container mt-3" *ngIf="lote">
+    <div class="row">
+        <div class="col-12 col-xs-4">
+            <mat-card>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div>
+                                <h2>{{lote.nombreLote | titlecase}}</h2>
+                                <br>
+                                <h3>Numero de vacas del lote: {{numVacas}}</h3>
+                                <br>
+                                <h3>Peso total del lote: {{pesoTotal}} kg | {{pesoTotallb | number}} lb</h3> 
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <p>Factor alimenticio</p>
+                                <form autocomplete="off"
+                                      [formGroup]="formularioCalcular"
+                                      (ngSubmit)="calcular()">
+                                    <div class="col-sm-12">
+                                        <p>Porcentaje</p>
+                                        <input type="number"
+                                        class="form-control"
+                                        formControlName="factor"
+                                        placeholder="20%">
+                                        <span class="form-text text-danger"
+                                        *ngIf="campoNoValido('factor')">
+                                            Ingrese el Porcentaje...
+                                        </span>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <button mat-raised-button
+                                                color="primary"                   
+                                                class="btn btn-primary float-end"
+                                                [disabled]="formularioCalcular.invalid"
+                                                type="submit">
+                                                Calcular
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col float-end">
+                            <h2>Peso de alimentación: {{pesoAlimentacion}} kg | {{pesoAlimentacionlb | number}} lb</h2>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

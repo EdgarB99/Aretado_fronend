@@ -1,0 +1,98 @@
+<h1 class="d-flex justify-content-center mt-3">
+    Actualizar peso diario
+</h1>
+
+<div class="container">
+    <div class="row">
+      <form [formGroup]="formularioArete">
+        <div class="col-sm-4">   
+            <label class="form-label">Vacas</label>
+            <select class="form-control"
+                    formControlName="arete">
+                <option value=""> -- Seleccione arete -- </option>
+                <option *ngFor="let vaca of vacas"
+                        [value]="vaca"> {{vaca}} </option>
+            </select>
+        </div>
+      </form>
+    </div>
+</div>
+
+<div class="container mt-3" *ngIf="vacaFound === true">
+    <div class="row">
+        <div class="col-12 col-xs-4">
+            <mat-card>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div>
+                                <p><strong>Lote:</strong>  {{lote.nombreLote | titlecase}}</p>
+                                <br>
+                                <p> <strong>Raza:</strong>  {{raza.nombreRaza | titlecase}}</p>
+                                <br>
+                                <p><strong>Peso Actual</strong></p>
+                                <br>
+                                <p>{{vaca.kg}} kg.</p>
+                                <br>
+                                <p>{{vaca.lb}} lb.</p>
+                                <br> 
+                            </div>
+                            <div *ngIf="pesoAnterior!== null" >
+                                <p><strong>Peso Anterior</strong></p>
+                                <br>
+                                <p>{{pesoAnterior.kgAnterior}} kg.</p>
+                                <br>
+                                <p>{{pesoAnterior.lbAnterior}} lb.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <p><strong>Registrar Nuevo Peso</strong></p>
+                                <form autocomplete="off"
+                                      [formGroup]="formularioPeso"
+                                      (ngSubmit)="registrar()">
+                                    <div class="col-sm-12 mt-2">
+                                        <p>Kilogramos</p>
+                                        <input type="number"
+                                        class="form-control"
+                                        formControlName="kg"
+                                        placeholder="250">
+                                        <span class="form-text text-danger"
+                                        *ngIf="campoNoValido('kg')">
+                                            Ingrese los kg de la vaca.
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-12 mt-2">
+                                        <p>Libras</p>
+                                        <input type="number"
+                                        class="form-control"
+                                        formControlName="lb"
+                                        placeholder="500">
+                                        <span class="form-text text-danger"
+                                        *ngIf="campoNoValido('lb')">
+                                            Ingrese las libras de la vaca.
+                                        </span>
+                                    </div>
+                                    <div class="col mt-3">
+                                        <button mat-raised-button
+                                                color="primary"
+                                                class="float-end"
+                                                type="submit"
+                                                [disabled]="formularioPeso.invalid || registroHecho">
+                                                Registrar
+                                                <mat-icon mat-list-icon>save</mat-icon>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="form-text text-danger text-center"
+                    *ngIf="registroHecho === true">
+                        ¡¡¡ Ya se registró el peso de hoy !!!
+                </h3>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

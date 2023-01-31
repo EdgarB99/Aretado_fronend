@@ -1,0 +1,61 @@
+<h1 class="d-flex justify-content-center mt-3">Listado de lotes</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button (click)="navegarToAgregarLote()"
+                    type="button"
+                    mat-raised-button
+                    color="success"
+                    class="mb-3 mt-3 float-end">
+                Agregar Lote
+                <mat-icon mat-list-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col">
+            
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+              
+                  <!-- Position Column -->
+                  <ng-container matColumnDef="nombreLote">
+                    <th mat-header-cell *matHeaderCellDef> Nombre Lote </th>
+                    <td mat-cell *matCellDef="let element"> {{element.nombreLote | titlecase}} </td>
+                  </ng-container>
+              
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="descripcion">
+                    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                    <td mat-cell *matCellDef="let element"> {{element.descripcion | titlecase}}</td>
+                  </ng-container>
+                
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef></th>            
+                    <mat-cell *matCellDef="let myRowData">
+                      <button mat-raised-button color="edit"  (click)="editar(myRowData.id)">
+                        Editar
+                        <mat-icon mat-list-icon>create</mat-icon>
+                      </button>
+                    </mat-cell>
+                  </ng-container>
+          
+              
+                  <tr  mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              
+                <mat-paginator class="d-flex justify-content-center mt-3"
+                               [pageSize]="5"
+                               showFirstLastButtons>
+                </mat-paginator>
+              </div>
+              
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+
+<mat-sidenav-container fullscreen>
+
+    <mat-sidenav opened="true" #sidenav mode="side">
+        <mat-nav-list>
+            <a routerLink="./registrar-vacas"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>add_box</mat-icon>
+                <span>Registrar vacas</span>
+            </a>
+            <a routerLink="./actualizar-peso"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>today</mat-icon>
+                <span>Actualizar peso</span>
+            </a>
+            <a routerLink="./lista-aretes"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>view_list</mat-icon>
+                <span>Lista de vacas</span>
+            </a>
+            <a routerLink="./lista-lotes"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>view_list</mat-icon>
+                <span>Lista de lotes</span>
+            </a>
+            <a routerLink="./lista-razas"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>view_list</mat-icon>
+                <span>Lista de razas</span>
+            </a>
+            <a routerLink="./reporte-lote"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>insert_chart</mat-icon>
+                <span>Reporte lote</span>
+            </a>
+            <a routerLink="./reporte-vaca"
+            mat-list-item
+            (click)="sidenav.toggle()">
+            <mat-icon mat-list-icon>insert_chart</mat-icon>
+            <span>Reporte vaca</span>
+            </a>
+            <a routerLink="./alimentacion"
+                mat-list-item
+                (click)="sidenav.toggle()">
+                <mat-icon mat-list-icon>calculate</mat-icon>
+                <span>Calcular alimentación</span>
+            </a>
+          
+            
+        </mat-nav-list>  
+    </mat-sidenav>
+
+    <mat-toolbar>
+        <button mat-icon-button
+            (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <img src="assets/cowmanager.png" width="12%">
+
+        <span class="spacer"></span>
+
+
+        <button *ngIf="usuario" mat-button>
+            <mat-icon mat-list-icon>account_box</mat-icon>
+            {{usuario.nombre | titlecase}} {{usuario.apellidoPaterno | titlecase}} {{usuario.apellidoMaterno | titlecase}}
+        </button>
+        
+
+        <button mat-button
+                (click)="logout()">
+            Logout
+        </button>
+
+    </mat-toolbar>
+
+    <div class="container">
+    <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

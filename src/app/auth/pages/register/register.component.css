@@ -1,0 +1,13 @@
+
+body{
+    background-image: url('/assets/fondo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 120vh;
+    width: 100%;
+  }
+  
+  
+  
+  

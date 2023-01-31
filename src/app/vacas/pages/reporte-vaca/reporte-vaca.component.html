@@ -1,0 +1,65 @@
+<h1 class="d-flex justify-content-center mt-3">
+    Reporte de variación de peso por vaca
+</h1>
+
+<div class="container">
+    <div class="row">
+      <form [formGroup]="formularioArete">
+        <div class="col-sm-4">   
+            <label class="form-label">Vacas</label>
+            <select class="form-control"
+                    formControlName="arete">
+                <option value=""> -- Seleccione Vaca -- </option>
+                <option *ngFor="let arete of aretes"
+                        [value]="arete"> {{arete}} </option>
+            </select>
+        </div>
+      </form>
+    </div>
+</div>
+
+<div class="mt-5"></div>
+
+<div class="container">
+    <h2 class="">
+        Peso diario
+      </h2>
+    <div class="row">
+        <div class="col-sm-8">
+            <div style="display: block;">
+                <canvas baseChart class="chart"
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-5"></div>
+
+<div class="container">
+    <h2 class="">
+        Peso mensual
+      </h2>
+    <div class="row">
+        <div class="col-sm-8">            
+           <div style="display:block">
+            <canvas baseChart class="chart2"
+            [data]="barChartData2"
+            [options]="barChartOptions2"
+            [plugins]="barChartPlugins2"
+            [type]="barChartType2"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+            </canvas>
+           </div>
+        </div>
+    </div>
+</div>
+
+
