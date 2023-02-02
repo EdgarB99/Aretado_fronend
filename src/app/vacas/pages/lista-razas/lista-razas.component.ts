@@ -20,7 +20,7 @@ export class ListaRazasComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
 
-    this.usuarioId = localStorage.getItem('id')!;
+    this.usuarioId = this.vacasService.decodeUsuarioFromToken();
     this.vacasService.getRazasByUsuarioId(this.usuarioId)
     .subscribe(razas=>{
       this.razas=razas;

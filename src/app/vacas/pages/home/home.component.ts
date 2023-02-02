@@ -16,15 +16,18 @@ export class HomeComponent implements OnInit {
               private vacasService:VacasService) { }
 
   ngOnInit(): void {
-    let id = localStorage.getItem('id');
-    this.vacasService.getUsuarioById(id!)
+
+    
+    const id = this.vacasService.decodeUsuarioFromToken();
+
+    this.vacasService.getUsuarioById(id)
     .subscribe(usuario=>{
       this.usuario=usuario;
     });
   }
 
   logout(){
-    localStorage.removeItem('id');
+    localStorage.removeItem('token');
     this.router.navigate(['./auth/login']);
   }
 

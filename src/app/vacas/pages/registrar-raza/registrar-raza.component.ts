@@ -33,7 +33,7 @@ export class RegistrarRazaComponent implements OnInit {
               private dialog:MatDialog) { }
 
   ngOnInit(): void {
-    this.usuarioId = localStorage.getItem('id')!;
+    this.usuarioId = this.vacasService.decodeUsuarioFromToken();
     if(!this.router.url.includes('editar-raza')){
       return;
     }

@@ -151,7 +151,7 @@ export class ReporteLoteComponent implements OnInit {
               private vacasService:VacasService) { }
 
   ngOnInit(): void {
-    this.usuarioId = localStorage.getItem('id')!;
+    this.usuarioId = this.vacasService.decodeUsuarioFromToken();
     this.vacasService.getLotesByUsuarioId(this.usuarioId)
     .subscribe(lotes=>{
       this.lotes= lotes.map(lote=>{

@@ -11,6 +11,7 @@ import { ReporteLoteComponent } from './pages/reporte-lote/reporte-lote.componen
 import { ReporteVacaComponent } from './pages/reporte-vaca/reporte-vaca.component';
 import { RegistrarLoteComponent } from './pages/registrar-lote/registrar-lote.component';
 import { RegistrarRazaComponent } from './pages/registrar-raza/registrar-raza.component';
+import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.component';
 
 const routes: Routes = [{
   path:':id',
@@ -68,6 +69,10 @@ const routes: Routes = [{
       path:'reporte-vaca',
       component: ReporteVacaComponent
     },
+    {
+      path:'editar-datos',
+      component: EditarUsuarioComponent
+    }
     
   ]
 }];

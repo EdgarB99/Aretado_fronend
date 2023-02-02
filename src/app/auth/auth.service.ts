@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Login } from '../interface/login.interface'
 import { catchError, Observable, of, throwError, map } from 'rxjs';
 import { Usuario } from 'src/app/interface/usuario.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class AuthService {
   errorMsg!: string;
   private _auth: Usuario | undefined;
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient,
+               private jwtHelper: JwtHelperService) { }
 
 
   registrarUsuario(usuario:Usuario): Observable<Usuario>{
@@ -55,13 +57,13 @@ export class AuthService {
 
 verificaAutenticacion(): Observable<boolean> {
 
-   
-
-    if ( !localStorage.getItem('id') ) {
+    if ( !localStorage.getItem('token') ) {
       return of(false);
     }
 
-    let usuarioId = localStorage.getItem('id')!;
+    let token = localStorage.getItem('token')!;
+    const usuario:Usuario = this.decodeUserFromToken(token);
+    const usuarioId = usuario.id;
 
     return this.http.get<Usuario>(`${ this.baseUrl }/auth/${usuarioId}`)
               .pipe(
@@ -71,6 +73,10 @@ verificaAutenticacion(): Observable<boolean> {
                 })
               );
 
+  }
+
+  decodeUserFromToken(token:string) {
+    return this.jwtHelper.decodeToken(token);
   }
   
 }

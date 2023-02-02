@@ -14,6 +14,7 @@ import { CreateMesPeso } from '../interface/create-mes-peso.interface';
 import { UpdateVaca } from '../interface/update-vaca.interface';
 import { PesoAnterior } from '../interface/peso-anterior.interface';
 import { CreateRaza } from '../interface/create-raza.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,18 @@ export class VacasService {
 
   baseUrl='http://localhost:3000';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,
+              private jwtHelper:JwtHelperService) { }
+
+  decodeUsuarioFromToken() {
+
+    let token = localStorage.getItem('token')!;
+    const usuario:Usuario = this.jwtHelper.decodeToken(token)!;
+    const usuarioId = usuario.id ;
+
+    return usuarioId;
+    
+  }
 
   getUsuarioById(id:string): Observable<Usuario>{
     return this.http.get<Usuario>(`${this.baseUrl}/auth/${id}`)

@@ -66,7 +66,7 @@ export class RegistrarVacasComponent implements OnInit {
 
   ngOnInit(): void {
     //Extraccion de Id
-    this.usuarioId = localStorage.getItem('id')!;
+    this.usuarioId = this.vacasService.decodeUsuarioFromToken();
     //Pedir todos los lotes del usuario
     this.vacasService.getLotesByUsuarioId(this.usuarioId)
     .subscribe(lotes=>{

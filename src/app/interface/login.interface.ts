@@ -1,7 +1,6 @@
 export interface Login{
-    id: string;
-    email: string;
-    password: string;
+    usuario: Usuario;
+    token:string;
 }
 
 export interface Usuario{

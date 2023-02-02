@@ -20,6 +20,7 @@ import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 import { ConfirmarRazaComponent } from './components/confirmar-raza/confirmar-raza.component';
 import { ConfirmarVacaComponent } from './components/confirmar-vaca/confirmar-vaca.component';
 import { ConfirmarPesoComponent } from './components/confirmar-peso/confirmar-peso.component';
+import { EditarUsuarioComponent } from './pages/editar-usuario/editar-usuario.component';
 
 
 
@@ -41,6 +42,7 @@ import { ConfirmarPesoComponent } from './components/confirmar-peso/confirmar-pe
     ConfirmarRazaComponent,
     ConfirmarVacaComponent,
     ConfirmarPesoComponent,
+    EditarUsuarioComponent,
   ],
   imports: [
     CommonModule,

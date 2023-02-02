@@ -104,7 +104,7 @@ export class ReporteVacaComponent implements OnInit {
               private vacasService:VacasService) { }
 
   ngOnInit(): void {
-    this.usuarioId = localStorage.getItem('id')!;
+    this.usuarioId = this.vacasService.decodeUsuarioFromToken();
 
     this.vacasService.getVacasByUsuarioId(this.usuarioId)
     .subscribe(vacas=>{

@@ -67,7 +67,7 @@
         <span class="spacer"></span>
 
 
-        <button *ngIf="usuario" mat-button>
+        <button *ngIf="usuario" mat-button routerLink="./editar-datos">
             <mat-icon mat-list-icon>account_box</mat-icon>
             {{usuario.nombre | titlecase}} {{usuario.apellidoPaterno | titlecase}} {{usuario.apellidoMaterno | titlecase}}
         </button>

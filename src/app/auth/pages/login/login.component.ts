@@ -4,6 +4,7 @@ import { ValidatorService } from '../../../shared/validator.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Usuario } from 'src/app/interface/usuario.interface';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
 
   id!:string;
+  token!:string;
   errorMsg!:boolean;
   usuarioNotFound!:string;
 
@@ -52,15 +54,29 @@ export class LoginComponent implements OnInit {
         this.authService.getAuth(this.formularioLogin.value)
         .subscribe(resp=>{
           if(resp)
-          this.id=resp.id;
-          console.log(this.id);
-          if(this.id===undefined){
+          //this.id=resp.id;
+          //console.log(this.id);
+
+          //Recibimos la data al iniciar sesion y extraemos el token 
+          this.token = resp.token;
+          console.log(this.token);
+          
+          if(this.token===undefined){
             this.errorMsg=true;
             this.usuarioNotFound = 'Este correo no esta registrado';
           }else{
-          localStorage.setItem("id", this.id);
-          this.router.navigate([`./vacas-manager/${this.id}/registrar-vacas`]);
+
+          localStorage.setItem("token", this.token);
+           const usuario : Usuario = this.authService.decodeUserFromToken(this.token);
+           console.log(usuario);
+           this.id = usuario.id;
+           console.log("el pimche id hdspm",this.id)
+           
+           this.router.navigate([`./vacas-manager/${this.id}`]);
+
+           // this.router.navigate([`./vacas-manager/${this.id}/registrar-vacas`]);
           }
+
         }, error=>{
           this.errorMsg=true;
           this.usuarioNotFound='Contraseña incorrecta';

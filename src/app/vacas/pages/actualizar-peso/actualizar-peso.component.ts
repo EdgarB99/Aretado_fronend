@@ -61,7 +61,7 @@ export class ActualizarPesoComponent implements OnInit {
 
   ngOnInit(): void {
     //Conseguir id del usuario;
-    this.usuarioId = localStorage.getItem('id')!;
+    this.usuarioId = this.vacasService.decodeUsuarioFromToken();
 
     //Conseguir todas los aretes de las vacas que contiene el usuario
     this.vacasService.getVacasByUsuarioId(this.usuarioId)

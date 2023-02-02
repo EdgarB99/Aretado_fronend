@@ -20,7 +20,7 @@ export class ListaLotesComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
 
-    this.usuarioId = localStorage.getItem('id')!;
+    this.usuarioId = this.vacasService.decodeUsuarioFromToken();
     this.vacasService.getLotesByUsuarioId(this.usuarioId)
     .subscribe(lotes=>{
       this.lotes=lotes;

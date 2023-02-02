@@ -19,7 +19,7 @@ export class ListaAretesComponent implements AfterViewInit, OnInit {
                private router: Router){}
 
   ngOnInit() {
-   this.usuarioId = localStorage.getItem('id')!;
+   this.usuarioId = this.vacasService.decodeUsuarioFromToken();
    this.vacasService.getVacasByUsuarioId(this.usuarioId)
    .subscribe(vacas=>{
     this.vacas = vacas;
